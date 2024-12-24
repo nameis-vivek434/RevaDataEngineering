@@ -1,5 +1,5 @@
 package readers
 
-object TestObj {
+object ChangeTest {
 
 }
