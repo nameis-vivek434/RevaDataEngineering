@@ -1,0 +1,5 @@
+package readers
+
+object TestObj {
+
+}
