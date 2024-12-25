@@ -3,6 +3,7 @@ package readers
 import org.apache.spark.sql.SparkSession
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
+import utils.ConfigLoader
 
 class CSVReaderTest extends AnyFunSuite with Matchers {
 
@@ -24,7 +25,7 @@ class CSVReaderTest extends AnyFunSuite with Matchers {
 
     // Assert the DataFrame is not empty and has the correct schema
     assert(!df.isEmpty, "The DataFrame should not be empty")
-    df.columns should contain allOf ("id", "name")
+    df.columns should contain allOf("id", "name")
     assert(df.count() == 3, "The DataFrame should contain exactly 3 rows")
   }
 
@@ -38,6 +39,10 @@ class CSVReaderTest extends AnyFunSuite with Matchers {
 
     // Assert the DataFrame contains the expected data
     assert(!df.isEmpty, "The DataFrame should not be empty")
-    df.select("name").collect().map(_.getString(0)) should contain allOf ("Alice", "Bob", "Charlie")
+    df.select("name").collect().map(_.getString(0)) should contain allOf("Alice", "Bob", "Charlie")
+  }
+  test("Practice tests") {
+    val csvPath = ConfigLoader.get("csv.file.path")
+    println(s"CSV File Path: $csvPath")
   }
 }
